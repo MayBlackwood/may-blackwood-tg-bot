@@ -22,21 +22,35 @@ const greetingText = `
 <b>Tap here to to see details: <i><a href="${muskoolLink}">Muskool Online Music School</a></i></b>
 `;
 
-bot.on('message', (msg) => {
-  const start = '/start';
-  const chatId = msg.chat.id;
-  if (msg.text.toString().toLowerCase().indexOf(start) === 0) {
-    // bot.sendMessage(msg.chat.id, 'Hello dear user');
-    bot.sendPhoto(chatId, './images/greeting.jpg', {
-      caption: greetingText,
-      parse_mode: 'HTML',
-    });
-  }
+// bot.on('message', (msg) => {
+//   const start = '/start';
+//   const chatId = msg.chat.id;
+//   if (msg.text.toString().toLowerCase().indexOf(start) === 0) {
+//     // bot.sendMessage(msg.chat.id, 'Hello dear user');
+//     bot.sendPhoto(chatId, './images/greeting.jpg', {
+//       caption: greetingText,
+//       parse_mode: 'HTML',
+//     });
+//   }
+// });
+
+// bot.on('message', (msg) => {
+//   const start = 'hi';
+//   if (msg.text.toString().toLowerCase().indexOf(start) === 0) {
+//     bot.sendMessage(msg.chat.id, 'Hello dear user');
+//   }
+// });
+
+bot.onText(/\/start/, (msg) => {
+  bot.sendPhoto(msg.chat.id, './images/greeting.jpg', {
+    caption: greetingText,
+    parse_mode: 'HTML',
+    reply_markup: {
+      keyboard: [['Start']],
+    },
+  });
 });
 
-bot.on('message', (msg) => {
-  const start = 'hi';
-  if (msg.text.toString().toLowerCase().indexOf(start) === 0) {
-    bot.sendMessage(msg.chat.id, 'Hello dear user');
-  }
+bot.onText(/Ok/, (msg) => {
+  bot.sendMessage(msg.chat.id, 'Great!');
 });

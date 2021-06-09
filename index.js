@@ -33,3 +33,10 @@ bot.on('message', (msg) => {
     });
   }
 });
+
+bot.on('message', (msg) => {
+  const start = 'hi';
+  if (msg.text.toString().toLowerCase().indexOf(start) === 0) {
+    bot.sendMessage(msg.chat.id, 'Hello dear user');
+  }
+});
